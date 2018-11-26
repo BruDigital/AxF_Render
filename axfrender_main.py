@@ -12,17 +12,11 @@ except ImportError:
     #QtWidgets = QtGui
 
 from gui import mainWindowUI_PS
-
-#from .. import axfrender_config as conf
 from os import path
-sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
+
 import axfrender_config as conf
 import axfrender_common as funcs
-
-def message_out(mess):
-    msg = QtGui.QMessageBox()
-    msg.setText(mess)
-    msg.exec_()
+import axfrender_check as check
 
 class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_MainWindow):
     '''
@@ -139,7 +133,7 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_MainWindow):
             self.axf_files_common_size += file_size
             if self.axf_files_common_size > conf.AXF_SIZE_LIMIT:
                 self.axf_files_common_size -= file_size
-                message_out('WARNING!\nAXF files size limit has exceeded\nsome files are not inserted.')
+                funcs.message_out('WARNING!\nAXF files size limit has exceeded\nsome files are not inserted.')
                 return
 
             self.AxfFileList.addItem(file_name)
@@ -187,9 +181,17 @@ class RPassCheckBox(QtGui.QCheckBox):
         '''
         pass
 
-
-if __name__ == '__main__':
+def main():
     app = QtGui.QApplication(sys.argv)
+    err = check.check_initial_state()
+
+    if err:
+        funcs.message_out(err)
+        return
+    
     window = mainWindow()
     window.show()
     app.exec_()
+
+if __name__ == '__main__':
+    main()

@@ -2,6 +2,22 @@ import json
 import os
 import time
 
+try:
+    from PySide2 import QtCore, QtGui, QtWidgets
+    from PySide2 import __version__
+except ImportError:
+    from PySide import QtCore, QtGui
+    from PySide import __version__
+    #QtWidgets = QtGui
+
+def message_out(mess):
+    if '2.0.0' in __version__:
+        msg = QtWidgets.QMessageBox()    
+    else:
+        msg = QtGui.QMessageBox()
+    msg.setText(mess)
+    msg.exec_()
+
 def read_data_from_file(filename):
     try:
         with open(filename,'r') as f:
