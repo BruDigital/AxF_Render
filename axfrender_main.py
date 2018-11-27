@@ -89,7 +89,7 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_MainWindow):
     def MaxFileName_dragEnterEvent(self, e):
         file_name = e.mimeData().urls()[0].toLocalFile()
         if e.mimeData().hasUrls() and\
-            file_name.startswith('F:/!!_WORK_!!/') and\
+            file_name.startswith('Z:') and\
             os.path.isfile(file_name) and\
             file_name.endswith('.max'):
             e.accept()
@@ -113,7 +113,7 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_MainWindow):
             file_name = i.toLocalFile()
             # add chek for axf_file.rsplit('/',3)[0]
             if not (e.mimeData().hasUrls() and\
-                    file_name.startswith('F:/!!_WORK_!!/') and\
+                    file_name.startswith(conf.BRU_DGTL) and\
                     os.path.isfile(file_name) and\
                     file_name.endswith('.axf')):
                 e.ignore()
@@ -146,7 +146,7 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_MainWindow):
         pass
 
     def run_max_file(self, name):
-        self.process = Popen([conf.MAX_SHEll, '-ms', '-u', 'PythonHost', name])
+        self.process = Popen([conf.MAX_SHEll, '-u', 'PythonHost', name])
 
     def send_to_render(self):
         '''

@@ -4,7 +4,7 @@ import json
 import os
 
 sys.path.append('C:/Python27/Lib/site-packages')
-sys.path.append('F:/!!_WORK_!!/!!__VV__!!/scripts/BruDigital/Scripts/axfrender/project')
+sys.path.append('Z:/RnD/17_AxF_Render/project')
 
 import axfrender_common as funcs
 import axfrender_config as conf
@@ -51,6 +51,9 @@ def main():
     adjust_mats(readed_data[0])
     adjust_rp_passes(readed_data[1], str(axf_numbers).strip('[]'))
     # add start render
+    net_submit_command = 'RPMrendSubmit.autoCloseSubmit = true \n' \
+                     'RPMrendSubmit.netsubmit (#(1, 3, 5))'
+    MaxPlus.Core.EvalMAXScript(net_submit_command)
     #MaxPlus.Core.EvalMAXScript ('quitMAX #noPrompt')
 
 # Add keyframes to MaterialID modifier
