@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainWindowUI.ui'
+# Form implementation generated from reading ui file 'Z:\RnD\17_AxF_Render\project\gui\mainWindowUI.ui'
 #
-# Created: Mon Nov 19 14:56:10 2018
+# Created: Mon Dec  3 00:22:55 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PySide import QtCore, QtGui
 
-class Ui_MainWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(800, 600)
-        self.centralwidget = QtGui.QWidget(MainWindow)
+class Ui_BruDigital_AXFrender(object):
+    def setupUi(self, BruDigital_AXFrender):
+        BruDigital_AXFrender.setObjectName("BruDigital_AXFrender")
+        BruDigital_AXFrender.resize(815, 505)
+        self.centralwidget = QtGui.QWidget(BruDigital_AXFrender)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -33,6 +33,15 @@ class Ui_MainWindow(object):
         self.MaxFileName = QtGui.QLineEdit(self.centralwidget)
         self.MaxFileName.setObjectName("MaxFileName")
         self.verticalLayout.addWidget(self.MaxFileName)
+        self.manRenderLayOut = QtGui.QHBoxLayout()
+        self.manRenderLayOut.setContentsMargins(-1, 0, -1, -1)
+        self.manRenderLayOut.setObjectName("manRenderLayOut")
+        self.manRenderChb = QtGui.QCheckBox(self.centralwidget)
+        self.manRenderChb.setObjectName("manRenderChb")
+        self.manRenderLayOut.addWidget(self.manRenderChb)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.manRenderLayOut.addItem(spacerItem)
+        self.verticalLayout.addLayout(self.manRenderLayOut)
         self.RenderPassLine = QtGui.QFrame(self.centralwidget)
         self.RenderPassLine.setFrameShape(QtGui.QFrame.HLine)
         self.RenderPassLine.setFrameShadow(QtGui.QFrame.Sunken)
@@ -57,21 +66,28 @@ class Ui_MainWindow(object):
         self.AxfFileList = QtGui.QListWidget(self.centralwidget)
         self.AxfFileList.setObjectName("AxfFileList")
         self.verticalLayout.addWidget(self.AxfFileList)
+        self.StartRenderLayOut = QtGui.QHBoxLayout()
+        self.StartRenderLayOut.setContentsMargins(-1, 0, -1, -1)
+        self.StartRenderLayOut.setObjectName("StartRenderLayOut")
+        spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.StartRenderLayOut.addItem(spacerItem1)
         self.StartRenderButton = QtGui.QPushButton(self.centralwidget)
         self.StartRenderButton.setMaximumSize(QtCore.QSize(150, 16777215))
         self.StartRenderButton.setObjectName("StartRenderButton")
-        self.verticalLayout.addWidget(self.StartRenderButton)
-        spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem)
-        MainWindow.setCentralWidget(self.centralwidget)
+        self.StartRenderLayOut.addWidget(self.StartRenderButton)
+        self.verticalLayout.addLayout(self.StartRenderLayOut)
+        spacerItem2 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout.addItem(spacerItem2)
+        BruDigital_AXFrender.setCentralWidget(self.centralwidget)
 
-        self.retranslateUi(MainWindow)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.retranslateUi(BruDigital_AXFrender)
+        QtCore.QMetaObject.connectSlotsByName(BruDigital_AXFrender)
 
-    def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "BruDigital_AXFrender", None, QtGui.QApplication.UnicodeUTF8))
-        self.SecretButton.setText(QtGui.QApplication.translate("MainWindow", "+", None, QtGui.QApplication.UnicodeUTF8))
-        self.RenderPassLabel.setText(QtGui.QApplication.translate("MainWindow", "Render Passes", None, QtGui.QApplication.UnicodeUTF8))
-        self.AxfFileLabel.setText(QtGui.QApplication.translate("MainWindow", "AXF Files", None, QtGui.QApplication.UnicodeUTF8))
-        self.StartRenderButton.setText(QtGui.QApplication.translate("MainWindow", "Start render", None, QtGui.QApplication.UnicodeUTF8))
+    def retranslateUi(self, BruDigital_AXFrender):
+        BruDigital_AXFrender.setWindowTitle(QtGui.QApplication.translate("BruDigital_AXFrender", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
+        self.SecretButton.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "+", None, QtGui.QApplication.UnicodeUTF8))
+        self.manRenderChb.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "Manual Render", None, QtGui.QApplication.UnicodeUTF8))
+        self.RenderPassLabel.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "Render Passes", None, QtGui.QApplication.UnicodeUTF8))
+        self.AxfFileLabel.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "AXF Files", None, QtGui.QApplication.UnicodeUTF8))
+        self.StartRenderButton.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "Start render", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -171,7 +171,7 @@ def check_initial_state():
     err += check_3dmax()
     err += check_template_file()
     err += check_PySide_installed()
-    err += check_deadline_installed()
+    #err += check_deadline_installed()
     return err
 
 def check_max_file_scene():

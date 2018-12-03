@@ -49,12 +49,16 @@ def main():
 
     create_keys(axf_numbers)
     adjust_mats(readed_data[0])
-    adjust_rp_passes(readed_data[1], str(axf_numbers).strip('[]'))
-    # add start render
+    renPassNumbers = adjust_rp_passes(readed_data[1], str(axf_numbers).strip('[]'))
+
     net_submit_command = 'RPMrendSubmit.autoCloseSubmit = true \n' \
-                     'RPMrendSubmit.netsubmit (#(1, 3, 5))'
-    MaxPlus.Core.EvalMAXScript(net_submit_command)
-    #MaxPlus.Core.EvalMAXScript ('quitMAX #noPrompt')
+                     'RPMrendSubmit.netsubmit (#({renPass}))'.format(renPass=renPassNumbers)
+    if not readed_data[0]:
+        MaxPlus.Core.EvalMAXScript(net_submit_command)
+        MaxPlus.Core.EvalMAXScript ('quitMAX #noPrompt')
+    else:
+        pass
+        #check/uncheck rpasses
 
 # Add keyframes to MaterialID modifier
 def create_keys(axf_numbers):
@@ -93,7 +97,7 @@ def adjust_mats(axf_list):
 # http://www.jellybiscuits.com/phpBB3rpm/viewtopic.php?f=6&t=54
 def adjust_rp_passes(pass_list, frames_string):
     rpass_count = MaxPlus.Core.EvalMAXScript('rpmdata.getpasscount()').Get()
-    
+    renpass_numbers = []
     for i in range(1,rpass_count+1):
         pass_name = MaxPlus.Core.EvalMAXScript('RPMdata.GetPassName {}'.format(i)).Get()
 
@@ -115,6 +119,8 @@ def adjust_rp_passes(pass_list, frames_string):
                 format(index=i, path=output_file, frames=frames_string)
         
         MaxPlus.Core.EvalMAXScript(cmd)
+        renpass_numbers.append(str(i))
+    return ','.join(renpass_numbers)
 
 if __name__ == '__main__':
     main()
