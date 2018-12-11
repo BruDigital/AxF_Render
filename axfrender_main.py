@@ -123,8 +123,11 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_BruDigital_AXFrender):
     def getAxfFromMime(self, data):
         out = []
         for i in data:
-            file_name = i.toLocalFile()
-            out += self.getFolderContent(file_name, 'axf')
+            path = i.toLocalFile()
+            if os.path.isfile(path):
+                out += [path]
+            if os.path.isdir(path):
+                out += self.getFolderContent(path, 'axf')
         return out
             
     def AxfFileList_dragEnterEvent(self, e):
