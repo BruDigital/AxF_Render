@@ -33,8 +33,8 @@ if log_out:
     MaxPlus.Core.EvalMAXScript ('quitMAX #noPrompt')
 
 funcs.remove_file(conf.BUFFER_FILE)
-axf_numbers = [int(elem.split('_')[-1].split('-')[0]) for elem in readed_data[0]]
-rfile_base_name = readed_data[0][0].rsplit('_',1)[0].split('/')[-1] + '_.jpg'
+axf_numbers = [int(elem.rsplit('-',1)[0].split('_')[-1]) for elem in readed_data[0]]
+rfile_base_name = readed_data[0][0].rsplit('-',1)[0].rsplit('_',1)[0].split('/')[-1] + '_.jpg'
 rfile_base_dir = readed_data[0][0].rsplit('/',3)[0] + '/' + conf.RENDER_DIR_NAME
 
 def main():
