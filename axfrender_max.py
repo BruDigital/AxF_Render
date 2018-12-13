@@ -53,7 +53,7 @@ def main():
 
     net_submit_command = 'RPMrendSubmit.autoCloseSubmit = true \n' \
                      'RPMrendSubmit.netsubmit (#({renPass}))'.format(renPass=renPassNumbers)
-    if not readed_data[0]:
+    if not readed_data[3]:
         MaxPlus.Core.EvalMAXScript(net_submit_command)
         MaxPlus.Core.EvalMAXScript ('quitMAX #noPrompt')
     else:
