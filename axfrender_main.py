@@ -199,7 +199,7 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_BruDigital_AXFrender):
         gets the data from UI and sends them to MAX
         '''
         list_of_axf = [self.AxfFileList.item(elem).text() for elem in range(self.AxfFileList.count())]
-        list_of_rpases = [elem.text() for elem in self.rpass_objects if elem.isChecked()]
+        list_of_rpases = [elem.text().rstrip() for elem in self.rpass_objects if elem.isChecked()]
         templete_max_file = self.MaxFileName.text()
         manual_render =  self.manRenderChb.isChecked()
 
