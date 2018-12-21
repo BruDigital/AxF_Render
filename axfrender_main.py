@@ -53,6 +53,8 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_BruDigital_AXFrender):
         self.StartRenderButton.setEnabled(0)
         self.StartRenderButton.clicked.connect(self.send_to_render)
     
+        self.AxfFileClearButton.clicked.connect(self.clearAxfList)
+    
     def hide_unhide_MAX_file_field(self):
         if self.SecretButton.isChecked():
             self.MaxFileName.show()
@@ -64,11 +66,15 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_BruDigital_AXFrender):
             self.SecretButton.setText('+')
 
     def set_rpass_check_boxes(self, rpass_list):
-        for i in rpass_list:
-            check_btn = RPassCheckBox(str(i))
+        for count, val in enumerate(rpass_list):
+            check_btn = RPassCheckBox(str(val + 5*' '))
             check_btn.for_out_connection = self.check_start_activity
+            icon = QtGui.QIcon('./gui/icons/{}.png'.format(val))
+            check_btn.setIcon(icon)
             self.rpass_objects.append(check_btn)
-            self.RenderPassLayOut.addWidget(check_btn)
+            column = count//5
+            row = count%5
+            self.RenderPassLayOut.addWidget(check_btn, row, column)
 
     def check_max_file_wgt(self):
         file_name = self.MaxFileName.text()
@@ -106,6 +112,7 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_BruDigital_AXFrender):
     def MaxFileName_dropEvent(self, e):
         self.MaxFileName.setText(e.mimeData().urls()[0].toLocalFile())
         self.check_start_activity()
+        
 
     def delete_AxfFileList_sel_item(self):
         item = self.AxfFileList.takeItem(self.AxfFileList.currentRow())
@@ -113,12 +120,21 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_BruDigital_AXFrender):
         f = item.text()
         if os.path.isfile(f):
             self.axf_files_common_size -= os.path.getsize(f)
+        self.setAxfListLengthLabel()
 
     def getFolderContent(self, folder, ext):
         listOfFiles = list()
         for (dirpath, dirnames, filenames) in os.walk(folder):
             listOfFiles += [os.path.join(dirpath, files).replace('\\','/') for files in filenames if (dirpath.startswith(conf.BRU_DGTL) and files.endswith('.{ext}'.format(ext=ext)))]
         return listOfFiles
+
+    def setAxfListLengthLabel(self):
+        self.AxfFileNumLabel.setText('{count} SKUs in the list'.format(count=str(self.AxfFileList.count())))
+
+    def clearAxfList(self):
+        while self.AxfFileList.count()>0:
+            self.AxfFileList.takeItem(0)
+
 
     def getAxfFromMime(self, data):
         out = []
@@ -162,6 +178,7 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_BruDigital_AXFrender):
                 self.AxfFileList.item(self.AxfFileList.count()-1).setForeground(QtGui.QColor('red'))
 
         self.check_start_activity()
+        self.setAxfListLengthLabel()
     
     def axf_is_rendered(self, file_name):
         file_list = []

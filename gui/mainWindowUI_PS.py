@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'Z:\RnD\17_AxF_Render\project\gui\mainWindowUI.ui'
 #
-# Created: Mon Dec  3 00:22:55 2018
+# Created: Fri Dec 21 14:25:28 2018
 #      by: pyside-uic 0.2.15 running on PySide 1.2.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_BruDigital_AXFrender(object):
     def setupUi(self, BruDigital_AXFrender):
         BruDigital_AXFrender.setObjectName("BruDigital_AXFrender")
-        BruDigital_AXFrender.resize(815, 505)
+        BruDigital_AXFrender.resize(1028, 705)
         self.centralwidget = QtGui.QWidget(BruDigital_AXFrender)
         self.centralwidget.setObjectName("centralwidget")
         self.verticalLayout = QtGui.QVBoxLayout(self.centralwidget)
@@ -51,9 +51,15 @@ class Ui_BruDigital_AXFrender(object):
         self.RenderPassLabel.setMaximumSize(QtCore.QSize(100, 30))
         self.RenderPassLabel.setObjectName("RenderPassLabel")
         self.verticalLayout.addWidget(self.RenderPassLabel)
-        self.RenderPassLayOut = QtGui.QVBoxLayout()
+        self.RenderPassCommonLayOut = QtGui.QHBoxLayout()
+        self.RenderPassCommonLayOut.setContentsMargins(-1, 0, -1, -1)
+        self.RenderPassCommonLayOut.setObjectName("RenderPassCommonLayOut")
+        self.RenderPassLayOut = QtGui.QGridLayout()
         self.RenderPassLayOut.setObjectName("RenderPassLayOut")
-        self.verticalLayout.addLayout(self.RenderPassLayOut)
+        self.RenderPassCommonLayOut.addLayout(self.RenderPassLayOut)
+        spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.RenderPassCommonLayOut.addItem(spacerItem1)
+        self.verticalLayout.addLayout(self.RenderPassCommonLayOut)
         self.AxfFileLine = QtGui.QFrame(self.centralwidget)
         self.AxfFileLine.setFrameShape(QtGui.QFrame.HLine)
         self.AxfFileLine.setFrameShadow(QtGui.QFrame.Sunken)
@@ -69,15 +75,23 @@ class Ui_BruDigital_AXFrender(object):
         self.StartRenderLayOut = QtGui.QHBoxLayout()
         self.StartRenderLayOut.setContentsMargins(-1, 0, -1, -1)
         self.StartRenderLayOut.setObjectName("StartRenderLayOut")
-        spacerItem1 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.StartRenderLayOut.addItem(spacerItem1)
+        self.AxfFileNumLabel = QtGui.QLabel(self.centralwidget)
+        self.AxfFileNumLabel.setObjectName("AxfFileNumLabel")
+        self.StartRenderLayOut.addWidget(self.AxfFileNumLabel)
+        self.AxfFileNumLabel_2 = QtGui.QLabel(self.centralwidget)
+        self.AxfFileNumLabel_2.setText("")
+        self.AxfFileNumLabel_2.setObjectName("AxfFileNumLabel_2")
+        self.StartRenderLayOut.addWidget(self.AxfFileNumLabel_2)
+        self.AxfFileClearButton = QtGui.QPushButton(self.centralwidget)
+        self.AxfFileClearButton.setObjectName("AxfFileClearButton")
+        self.StartRenderLayOut.addWidget(self.AxfFileClearButton)
+        spacerItem2 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.StartRenderLayOut.addItem(spacerItem2)
         self.StartRenderButton = QtGui.QPushButton(self.centralwidget)
         self.StartRenderButton.setMaximumSize(QtCore.QSize(150, 16777215))
         self.StartRenderButton.setObjectName("StartRenderButton")
         self.StartRenderLayOut.addWidget(self.StartRenderButton)
         self.verticalLayout.addLayout(self.StartRenderLayOut)
-        spacerItem2 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout.addItem(spacerItem2)
         BruDigital_AXFrender.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(BruDigital_AXFrender)
@@ -89,5 +103,7 @@ class Ui_BruDigital_AXFrender(object):
         self.manRenderChb.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "Manual Render", None, QtGui.QApplication.UnicodeUTF8))
         self.RenderPassLabel.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "Render Passes", None, QtGui.QApplication.UnicodeUTF8))
         self.AxfFileLabel.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "AXF Files", None, QtGui.QApplication.UnicodeUTF8))
+        self.AxfFileNumLabel.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "0 SKUs in the list", None, QtGui.QApplication.UnicodeUTF8))
+        self.AxfFileClearButton.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "Clear List", None, QtGui.QApplication.UnicodeUTF8))
         self.StartRenderButton.setText(QtGui.QApplication.translate("BruDigital_AXFrender", "Start render", None, QtGui.QApplication.UnicodeUTF8))
 
