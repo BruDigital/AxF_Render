@@ -134,6 +134,7 @@ class mainWindow(QtGui.QMainWindow, mainWindowUI_PS.Ui_BruDigital_AXFrender):
     def clearAxfList(self):
         while self.AxfFileList.count()>0:
             self.AxfFileList.takeItem(0)
+        self.axf_files_common_size = 0
 
 
     def getAxfFromMime(self, data):
